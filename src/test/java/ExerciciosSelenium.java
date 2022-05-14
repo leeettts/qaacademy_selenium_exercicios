@@ -1,3 +1,5 @@
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +11,8 @@ public class ExerciciosSelenium {
 
 
     @Test
-    public void testeExercicosSelenium() {
+    public void testeExercicosSelenium() throws InterruptedException {
+        //Exercicio 01
         driver.get("file:///C:/Users/leeti/OneDrive/%C3%81rea%20de%20Trabalho/Register.html");
         driver.findElement(By.xpath("//body[@class='ng-scope']/section[@id='section']/div[@class='container center']/div[contains(@class,'row')]/div[@class='col-sm-6 col-md-6 col-xs-12']/form[@id='basicBootstrapForm']/div[1]/div[1]/input[1]"))
                 .sendKeys("Flavio");
@@ -18,5 +21,29 @@ public class ExerciciosSelenium {
         driver.findElement(By.xpath("//textarea[@ng-model='Adress']")).sendKeys("AV Paulista, 509");
         driver.findElement(By.xpath("//input[@type='email']")).sendKeys("teste@teste.com.br");
         driver.findElement(By.xpath(" //input[@type='tel']")).sendKeys("119773512");
+        //Exercicio 02
+        driver.findElement(By.xpath("//*[@value='Male']")).click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@value='Male']")).isSelected());
+        //Exercicio 03
+        driver.findElement(By.xpath("//input[@id='checkbox1']")).click();
+        Assert.assertTrue("Checkbox não selecionado",driver.findElement(By.xpath("//input[@id='checkbox1']")).isSelected());
+        Assert.assertFalse("Checkbox selecionado", driver.findElement(By.xpath("//label[contains(text(),'Movies')]")).isSelected());
+        //Exercicio 04
+
+        driver.findElement(By.xpath("//div[@id='msdd']")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//a[contains(text(),'Portuguese')]")).click();
+
+        //Listas Option
+
+        //com Click, tem que navegar até o elemento option e extrair o xpath
+        driver.findElement(By.xpath("//option[@value='Java']")).click();
+        Thread.sleep(2000);
+
+    }
+    @After
+    public void after() throws InterruptedException {
+        Thread.sleep(5000);
+        driver.quit();
     }
 }
