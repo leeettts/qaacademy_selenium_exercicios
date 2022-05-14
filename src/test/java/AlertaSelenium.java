@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,5 +25,11 @@ public class AlertaSelenium {
         Assert.assertEquals("I am an alert box!", alert.getText());
 //        alert.dismiss(); // Caso seja com Cancela e OK
         alert.accept();
+    }
+    @After
+    public void after() throws InterruptedException {
+
+        Thread.sleep(5000);
+        driver.quit();
     }
 }
