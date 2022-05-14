@@ -3,7 +3,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class ExerciciosSelenium {
 
@@ -40,10 +42,34 @@ public class ExerciciosSelenium {
         driver.findElement(By.xpath("//option[@value='Java']")).click();
         Thread.sleep(2000);
 
+        //Selecionar Lista Option/Select com Select Selenium
+        WebElement selectElement =
+                driver.findElement(By.xpath("//select[@id='Skills']"));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText("Linux");
+
+//        Countries
+        driver.findElement(By.xpath("//span[@class='select2-selection select2-selection--single']")).click();
+        driver.findElement(By.xpath("//*[@class='select2-results__options']//*[contains(text(),'United States of America')]")).click();
+
+        // Birthday
+
+        driver.findElement(By.xpath("//option[@value='1988']")).click();
+        driver.findElement(By.xpath("//option[@value='April']")).click();
+        driver.findElement(By.xpath("//option[@value='15']")).click();
+
+        //Password
+
+        driver.findElement(By.xpath("//input[@id='firstpassword']")).sendKeys("teste123");
+        driver.findElement(By.xpath("//input[@id='secondpassword']")).sendKeys("teste1223");
+        driver.findElement(By.xpath("//button[@id='submitbtn']")).click();
+
+
     }
     @After
     public void after() throws InterruptedException {
         Thread.sleep(5000);
         driver.quit();
     }
+
 }
